@@ -1,0 +1,74 @@
+
+export ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="agnoster"
+
+plugins=(git osx zsh-syntax-highlighting docker)
+
+source $ZSH/oh-my-zsh.sh
+
+PATH=/usr/local/bin:"$PATH"
+
+prompt_dir() {
+    prompt_segment blue black "${PWD##*/}"
+}
+
+prompt_context() {
+  local user=`whoami`
+
+  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment green default "%(!.%{%F{yellow}%}.)"
+  fi
+}
+
+export WORKON_HOME=~/.envs
+
+alias nosetests='nosetests -s --nologcapture'
+alias vi='nvim'
+alias vim='nvim'
+alias rmvenv='rmvirtualenv'
+alias da='deactivate'
+alias wk='workon ${PWD##*/}'
+alias dc='docker-compose'
+alias dm='docker-machine'
+alias ipy='ipython'
+
+function workon() {
+    VENV_NAME="$1"
+    if [ -d "$WORKON_HOME/$VENV_NAME" ]; then
+        echo "Activate Virtualenv..."
+        source "$WORKON_HOME/$VENV_NAME/bin/activate"
+    else;
+        echo "Virtualenv($VENV_NAME) is not exists!"
+    fi
+}
+
+function mkvenv2() {
+    mkvenv "${PWD##*/}" "/usr/local/bin/python2"
+}
+
+function mkvenv3() {
+    mkvenv "${PWD##*/}" "/usr/local/bin/python3"
+}
+
+function mkvenv() {
+    VENV_NAME="$1"
+    PYTHON_VERSION="$2"
+    if [ -z $VENV_NAME ]; then
+        VENV_NAME="${PWD##*/}"
+    fi
+    if [ -d "$WORKON_HOME/$VENV_NAME" ]; then
+        echo "Activate Virtualenv..."
+        source "$WORKON_HOME/$VENV_NAME/bin/activate"
+    else;
+        echo "Create Virtualenv..."
+        virtualenv "$WORKON_HOME/$VENV_NAME" -p "$PYTHON_VERSION"
+        source "$WORKON_HOME/$VENV_NAME/bin/activate"
+    fi
+}
+
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export GOPATH=~/go
+export PATH=$PATH:$GOPATH/bin
