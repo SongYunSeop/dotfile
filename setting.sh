@@ -8,12 +8,12 @@ then
     exit
 fi
 
+# Homebrew
+source ${PWD}/brew/setting.sh
+
 # zsh
 source ${PWD}/zsh/setting.sh
 ln -sf ${PWD}/zsh/zshrc ~/.zshrc
-
-# Homebrew
-source ${PWD}/brew/setting.sh
 
 # Python
 source ${PWD}/python/setting.sh

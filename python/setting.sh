@@ -3,18 +3,12 @@
 echo "=============================================="
 echo "              Python                    "
 echo "=============================================="
-if [[ "$(which python)" == "/usr/local/bin/python" ]];
-then
-    echo "Already Installed Python!"
-else
-    echo "Install Python@2..."
-    brew install python@2
-fi
-if [[ "$(which python3)" == "/usr/local/bin/python3" ]];
-then
-    echo "Already Installed Python!"
-else
-    echo "Install Python@3..."
-    brew install python
-fi
+DEFAULT_PYTHON_VERSION=3.8.3
+brew install pyenv
 
+pyenv install $DEFAULT_PYTHON_VERSION
+pyenv global $DEFAULT_PYTHON_VERSION
+
+eval "$(pyenv init -)"
+
+echo "$(python --version) is Installed!"

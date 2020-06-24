@@ -37,6 +37,7 @@ then
     echo "Create Symbolic link vimrc"
     sed -i -- 's/~\/.vimrc/~\/.config\/nvim\/init.vim/g' ${PWD}/vim/vimrc
     ln -sf ${PWD}/vim/vimrc ${HOME}/.config/nvim/init.vim
+    ln -sf ${PWD}/vim/ideavimrc ${HOME}/.ideavimrc
 
     while true; do
         read -p "Do you want to install plugin? [y/n]" yn
@@ -73,6 +74,7 @@ else
     echo "Create Symbolic link vimrc"
     sed -i -- 's/~\/.config\/nvim\/init.vim/~\/.vimrc/g' ${PWD}/vim/vimrc
     ln -sf ${PWD}/vim/vimrc ${HOME}/.vimrc
+    ln -sf ${PWD}/vim/ideavimrc ${HOME}/.ideavimrc
 
     while true; do
         read -p "Do you want to install plugin? [y/n]" yn

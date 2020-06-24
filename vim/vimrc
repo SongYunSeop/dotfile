@@ -28,9 +28,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/ctrlp-z'
 
 Plug 'rking/ag.vim'
-Plug 'SirVer/ultisnips'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Valloric/YouCompleteMe'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -42,20 +40,8 @@ Plug 'vim-scripts/bufexplorer.zip'
 Plug 'chrisbra/csv.vim'
 Plug 'chrisbra/Colorizer'
 
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
-
 Plug 'roxma/vim-paste-easy'
 Plug 'vim-scripts/indentpython.vim'
-
-Plug 'fatih/vim-go'
-Plug 'leafgarland/typescript-vim'
-Plug 'mxw/vim-jsx'
-Plug 'shime/vim-livedown'
-
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 
 Plug 'codeindulgence/vim-tig'
 Plug 'scrooloose/nerdcommenter'
@@ -312,15 +298,6 @@ nnoremap <leader>ag :Ag! -i ""<Left>
 nnoremap <leader>aw :Ag<CR>
 
 let g:ag_highlight=1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   unltisnips Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-h>"
-let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
