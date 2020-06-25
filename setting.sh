@@ -22,13 +22,6 @@ source ${PWD}/python/setting.sh
 source ${PWD}/vim/setting.sh
 
 # tmux.conf
-echo "=============================================="
-echo "              Tmux                    "
-echo "=============================================="
-brew install reattach-to-user-namespace
-ln -sf ${PWD}/tmux/tmux.conf ~/.tmux.conf
-ln -sf ${PWD}/bin/tat /usr/local/bin/tat
+source ${PWD}/tmux/setting.sh
 
-zsh
-
-echo 'DONE🎉🎉🎉
+echo DONE🎉🎉🎉
