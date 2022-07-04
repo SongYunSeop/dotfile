@@ -69,3 +69,4 @@ vnoremap > >gv
 vnoremap <BS> <DEL>
 
 nnoremap ; :
+set clipboard+=unnamed

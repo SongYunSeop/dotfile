@@ -10,41 +10,30 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 
-Plug 'flazz/vim-colorschemes'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
-Plug 'ryanoasis/vim-devicons'
 
 Plug 'benmills/vimux'
-Plug 'pitluga/vimux-nose-test'
 
 Plug 'mhinz/vim-startify'
+
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 
-Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/ctrlp-z'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-Plug 'rking/ag.vim'
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'godlygeek/tabular'
-Plug 'junegunn/goyo.vim'
-
-Plug 'vim-scripts/bufexplorer.zip'
-Plug 'chrisbra/csv.vim'
-Plug 'chrisbra/Colorizer'
-
-Plug 'roxma/vim-paste-easy'
-Plug 'vim-scripts/indentpython.vim'
-
-Plug 'codeindulgence/vim-tig'
-Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -92,10 +81,13 @@ set pastetoggle=<F4>
 
 " Ignore case when searching
 set ignorecase
+
 " Be smart when searching
 set smartcase
+
 " Highlight search last result
 set hlsearch
+
 " Move cursor when searching
 set incsearch
 set bs=indent,eol,start
@@ -106,15 +98,15 @@ set bs=indent,eol,start
 
 " Syntax Enable
 syntax on
+
 " Use color scheme 'seoul256'
-colorscheme seoul256
+colorscheme onedark
+
 " Visual mode color
 hi Visual ctermfg=NONE  ctermbg=0       term=reverse    cterm=reverse   guifg=NONE          guibg=#4fa5c7       gui=NONE
+
 " Search result color
 hi Search ctermfg=16    ctermbg=111     term=NONE       cterm=NONE      guifg=#151718       guibg=#55b5db       gui=NONE
-" Cursor color
-set cursorline
-hi CursorLine term=NONE cterm=NONE guibg=Grey40
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Define Color
@@ -162,9 +154,6 @@ lef g:indentLine_set_colors = 0
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = s:blue
 
-autocmd FileType javascript,css,html,htmldjango,lua,yaml setlocal ts=2 sts=2 sw=2
-au FileType htmldjango set syntax=html
-au FileType htmldjango set ft=html
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -257,35 +246,6 @@ let g:NERDTreeExtensionHighlightColor['md'] = s:brown
 
 let g:NERDTreeShowHidden=1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   nosetest Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let test#strategy="vimux"
-
-nmap <silent> <leader>t :RunNoseTestFocused<CR>
-nmap <silent> <leader>T :RunNoseTestBuffer<CR>
-nmap <leader>rt :VimuxRunCommand("!nosetest\t")<CR>
-
-let g:lint_plugin="pylint"
-nmap <leader>l :VimuxRunCommand(g:lint_plugin . " " .  expand("%"))<CR>
-
-nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
-nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:ycm_max_num_candidates = 10
-
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-set completeopt-=preview
-
-nmap <leader>g :YcmCompleter GoTo<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   ag.vim  Setting
@@ -358,11 +318,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|pyc)$',
   \ }
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   vim-codefmt Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-vnoremap fm :FormatLines<CR>
+nnoremap <C-p> :Files<Cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   WhiteSpace Setting
@@ -370,27 +326,6 @@ vnoremap fm :FormatLines<CR>
 
 nmap <leader>rw :StripWhitespace<CR>
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   csv.vim Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nmap <leader>csv :CSVTabularize<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   vim-paste-easy Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:paste_easy_enable=0
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   vim-tig Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:tig_default_command = 'main'
-let g:tig_open_command = 'tabe'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Nerd-Commenter Setting
@@ -417,12 +352,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   Livedown Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nmap <leader>gm :LivedownToggle<CR>
+nmap <C-_> <leader>c<space>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -435,3 +365,4 @@ function! JsonBeautify()
     execute '%!python -m json.tool'
     set syntax=json
 endfunction
+
