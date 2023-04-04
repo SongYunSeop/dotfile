@@ -5,12 +5,13 @@ then
     echo "=============================================="
     echo "              Homebrew                    "
     echo "=============================================="
-    if [[ "$(which brew)" == "/usr/local/bin/brew" ]];
+    if [[ "$(which brew)" == "/opt/homebrew/bin/brew" ]];
     then
         echo "Already Installed Homebrew!"
     else
         echo "Install Homebrew[https://brew.sh/index_ko.html]..."
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 else
     echo "=============================================="

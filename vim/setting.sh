@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "=============================================="
-echo "                      Vim                     "
+echo "              Vim                     "
 echo "=============================================="
 while true; do
     read -p "Do you want to install Neovim? [y/n]" yn

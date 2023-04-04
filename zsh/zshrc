@@ -3,11 +3,15 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
 
-plugins=(git macos docker)
+plugins=(
+    git
+    macos
+    docker
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
-
-PATH=/usr/local/bin:"$PATH"
 
 prompt_dir() {
     prompt_segment blue black "${PWD##*/}"
@@ -21,20 +25,20 @@ prompt_context() {
   fi
 }
 
-alias nosetests='nosetests -s --nologcapture'
 alias vi='nvim'
 alias vim='nvim'
 alias dc='docker-compose'
 alias dm='docker-machine'
 alias ipy='ipython'
-alias pt=poetry
+alias pt='poetry'
 
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init -)"

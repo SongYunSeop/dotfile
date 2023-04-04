@@ -11,6 +11,10 @@ fi
 # Homebrew
 source ${PWD}/brew/setting.sh
 
+# Font
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+
 # zsh
 source ${PWD}/zsh/setting.sh
 ln -sf ${PWD}/zsh/zshrc ~/.zshrc

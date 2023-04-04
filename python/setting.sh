@@ -3,7 +3,9 @@
 echo "=============================================="
 echo "              Python                    "
 echo "=============================================="
-DEFAULT_PYTHON_VERSION=3.8.3
+
+DEFAULT_PYTHON_VERSION=3.11.1
+
 if [ -z "$(which pyenv)" ];
 then
     echo "Install Pyenv..."
