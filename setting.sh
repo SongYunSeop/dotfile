@@ -28,4 +28,7 @@ source ${PWD}/vim/setting.sh
 # tmux.conf
 source ${PWD}/tmux/setting.sh
 
+# keyboard
+source ${PWD}/keyboard/setting.sh
+
 echo DONE🎉🎉🎉
