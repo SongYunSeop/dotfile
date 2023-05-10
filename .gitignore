@@ -1,1 +1,4 @@
 *.swp
+.idea
+
+vim/vimrc--

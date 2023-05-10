@@ -35,6 +35,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 
+Plug 'rking/ag.vim'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
