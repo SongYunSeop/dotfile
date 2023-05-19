@@ -70,6 +70,7 @@ set nowrap
 set nomodeline
 
 language en_US
+let $LANG='en_US.UTF-8'
 
 " No swap no backup
 set noswapfile
